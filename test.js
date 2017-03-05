@@ -1,7 +1,7 @@
 require("./main")({
     basePath:"/Users/wangjinliang/git/topolr/source/",
     output:"../",
-    sitePath:"http://localhost:8080/topolr"
+    sitePath:"http://topolr.org"
 }).render().done(function () {
     console.log("done")
 }).fail(function (a) {
