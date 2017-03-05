@@ -10,9 +10,10 @@ var doc=function (obj,container) {
         content:""
     },obj);
     this._container=container;
+    this.sitePath=container.getSitePath();
 };
 doc.prototype.getURL=function () {
-    return this.sort.replace(/\./g,"/")+"/"+this.name;
+    return this._container.getSitePath()+"/"+this.sort.replace(/\./g,"/")+"/"+this.name+".html";
 };
 doc.prototype.getOutputPath=function () {
     return this._container.getOutputPath()+this.sort.replace(/\./g,"/")+"/"+this.name+".html";
@@ -48,5 +49,8 @@ doc.prototype._render=function () {
     }).then(function (str) {
         return topolr.file(ths.getOutputPath()).write(str);
     });
+};
+doc.prototype.getContainer=function () {
+    return this._container;
 };
 module.exports=doc;

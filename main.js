@@ -15,5 +15,9 @@ module.exports=function (option) {
         }
         return t;
     });
+    topolr.setTemplateGlobalMacro("sitemodule",function (attr,render) {
+        var name=attr.type,option=attr.option;
+        return "<div data-view='"+(name||'')+"' data-option='"+(option||'')+"' data-parent-view='root'></div>";
+    });
     return _base;
 }

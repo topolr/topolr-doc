@@ -1,4 +1,5 @@
 module.exports={
+    sitePath:"",
     basePath:process.cwd()+"/sample/",
     sourcePath:"./docs",
     layoutPath:"./layout",

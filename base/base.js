@@ -11,6 +11,7 @@ var base=function (option) {
     this.option.layoutPath=require("path").resolve(this.option.basePath,this.option.layoutPath).replace(/\\/g,"/");
     this.option.output=require("path").resolve(this.option.basePath,this.option.output).replace(/\\/g,"/");
     this.option.modulePath=require("path").resolve(this.option.basePath,this.option.modulePath).replace(/\\/g,"/");
+    this.sitePath=this.option.sitePath[this.option.sitePath.length-1]==="/"?this.option.sitePath:(this.option.sitePath+"/");
     var ths=this;
     ["basePath","sourcePath","layoutPath","output","modulePath"].forEach(function (a) {
         var b=ths.option[a];
@@ -116,6 +117,9 @@ base.prototype.getSourcePath=function () {
 };
 base.prototype.getBasePath=function () {
     return this.option.basePath;
+};
+base.prototype.getSitePath=function () {
+    return this.sitePath;
 };
 base.prototype.getOutputPath=function () {
     return this.option.output;
