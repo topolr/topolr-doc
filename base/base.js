@@ -195,7 +195,7 @@ base.prototype.render=function () {
 };
 base.prototype.watch=function () {
     var ths=this;
-    require('chokidar').watch(_builder.getBasePath(), {ignored: /[\/\\]\./}).on('change', function (path) {
+    require('chokidar').watch(this.getBasePath(), {ignored: /[\/\\]\./}).on('change', function (path) {
         waiter.add("edit", path);
     }).on('add', function (path) {
         waiter.add("add", path);
