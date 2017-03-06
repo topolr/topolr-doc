@@ -1,18 +1,19 @@
 {
-  "name": "doc",
-  "version": "0.0.1",
-  "description": "just for test",
-  "main": "main.js",
-  "scripts": {
-    "test": "node test.js"
-  },
-  "keywords": [
-    "doc"
-  ],
-  "author": "hou80houzhu",
-  "license": "MIT",
-  "dependencies": {
-    "marked": "^0.3.6",
-    "topolr-util": "^0.1.17"
-  }
+    "name": "doc",
+    "version": "0.0.1",
+    "description": "just for test",
+    "main": "main.js",
+    "scripts": {
+        "test": "node test.js"
+    },
+    "keywords": [
+        "doc"
+    ],
+    "author": "hou80houzhu",
+    "license": "MIT",
+    "dependencies": {
+        "marked": "^0.3.6",
+        "topolr-util": "^0.1.17",
+        "chokidar": "^1.6.1"
+    }
 }

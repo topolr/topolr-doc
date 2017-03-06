@@ -2,6 +2,42 @@ var topolr=require("topolr-util");
 var config=require("./config");
 var doc=require("./antity/doc");
 var sort=require("./antity/sort");
+var waiter = {
+    _data: {},
+    _tid: null,
+    _time: 500,
+    _fn: null,
+    _times: 0,
+    add: function (type, path) {
+        if (!waiter._data[type]) {
+            waiter._data[type] = [];
+        }
+        if (waiter._data[type].indexOf(path) === -1) {
+            waiter._data[type].push(path);
+        }
+        if (waiter.tid !== null) {
+            clearTimeout(waiter.tid);
+        }
+        setTimeout(function () {
+            var _has = false;
+            for (var i in waiter._data) {
+                _has = true;
+            }
+            if (_has) {
+                waiter._fn && waiter._fn(waiter._data, waiter._times);
+                waiter._times++;
+            }
+            waiter._data = {};
+            waiter._tid = null;
+        }, waiter._time);
+        return this;
+    },
+    setHandler: function (fn) {
+        waiter._fn = fn;
+        return this;
+    }
+};
+
 var base=function (option) {
     this.option=topolr.extend(true,{
         basePath:""
@@ -156,6 +192,30 @@ base.prototype.render=function () {
         })(this._doclist[i]);
     }
     return ps;
+};
+base.prototype.watch=function () {
+    var ths=this;
+    require('chokidar').watch(_builder.getBasePath(), {ignored: /[\/\\]\./}).on('change', function (path) {
+        waiter.add("edit", path);
+    }).on('add', function (path) {
+        waiter.add("add", path);
+    }).on('unlink', function (path) {
+        waiter.add("remove", path);
+    }).on("ready", function () {
+        waiter.setHandler(function (a, times) {
+            var t=new Date();
+            var _y=t.getFullYear(),_m=(t.getMonth()+1),_d=t.getDate(),_h=t.getHours(),_mi=t.getMinutes(),_s=t.getSeconds();
+            var p=_y+"-"+(_m<10?("0"+_m):_m)+"-"+(_d<10?("0"+_d):_d)+
+                " "+(_h<10?("0"+_h):_h)+":"+(_mi<10?("0"+_mi):_mi)+":"+(_s<10?("0"+_s):_s);
+            topolr.log("(color:11=>[BUILT] {{time}})",{time:p});
+            ths.render().done(function () {
+                topolr.log("(color:green=> build done)")
+            }).fail(function () {
+                topolr.log("(color:red=> {{error}})",{error:a});
+            });
+        });
+    }).on("error", function () {
+    });
 };
 
 module.exports=function (option) {
