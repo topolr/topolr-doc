@@ -1,7 +1,7 @@
 {
-  "name": "doc",
-  "version": "0.0.1",
-  "description": "just for test",
+  "name": "topolr-doc",
+  "version": "0.0.2",
+  "description": "parsing doc site",
   "main": "main.js",
   "scripts": {
     "test": "node test.js"
@@ -9,10 +9,21 @@
   "keywords": [
     "doc"
   ],
-  "author": "hou80houzhu",
+  "author": {
+    "name": "WangJinliang(hou80houzhu)",
+    "email": "hou80houzhu@vip.qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/topolr/topolr-doc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/topolr/topolr-doc/issues"
+  },
+  "homepage": "http://topolr.org",
   "license": "MIT",
   "dependencies": {
     "marked": "^0.3.6",
-    "topolr-util": "^0.1.17"
+    "topolr-util": "^1.0.0"
   }
 }
