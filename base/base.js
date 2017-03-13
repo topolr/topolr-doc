@@ -47,7 +47,9 @@ var base=function (option) {
     this.option.layoutPath=require("path").resolve(this.option.basePath,this.option.layoutPath).replace(/\\/g,"/");
     this.option.output=require("path").resolve(this.option.basePath,this.option.output).replace(/\\/g,"/");
     this.option.modulePath=require("path").resolve(this.option.basePath,this.option.modulePath).replace(/\\/g,"/");
-    this.sitePath=this.option.sitePath[this.option.sitePath.length-1]==="/"?this.option.sitePath:(this.option.sitePath+"/");
+    this.devSitePath=this.option.devSitePath[this.option.devSitePath.length-1]==="/"?this.option.devSitePath:(this.option.devSitePath+"/");
+    this.pubSitePath=this.option.pubSitePath[this.option.pubSitePath.length-1]==="/"?this.option.pubSitePath:(this.option.pubSitePath+"/");
+    this._dev=false;
     base.reset.call(this);
 };
 base.reg={
@@ -158,7 +160,11 @@ base.prototype.getBasePath=function () {
     return this.option.basePath;
 };
 base.prototype.getSitePath=function () {
-    return this.sitePath;
+    if(this._dev){
+        return this.devSitePath;
+    }else{
+        return this.pubSitePath;
+    }
 };
 base.prototype.getOutputPath=function () {
     return this.option.output;
@@ -198,6 +204,7 @@ base.prototype.render=function () {
 };
 base.prototype.watch=function () {
     var ths=this;
+    ths._dev=true;
     require('chokidar').watch(this.getBasePath(), {ignored: /[\/\\]\./}).on('change', function (path) {
         waiter.add("edit", path);
     }).on('add', function (path) {

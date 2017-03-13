@@ -1,5 +1,6 @@
 require("./main")({
     basePath:"G:/git/topolr/source/",
     output:"../",
-    sitePath:"http://topolr.org"
-}).watch();
+    devSitePath:"http://localhost/topolr/",
+    pubSitePath:"http://topolr.org"
+}).render();

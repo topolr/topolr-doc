@@ -1,6 +1,6 @@
 {
   "name": "topolr-doc",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "parsing doc site",
   "main": "main.js",
   "scripts": {

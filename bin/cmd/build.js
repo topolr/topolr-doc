@@ -1,6 +1,6 @@
 var topolr=require("topolr-util");
 module.exports={
-    command: "build",
+    command: "publish",
     desc: "build the site",
     paras: [],
     fn:function(){

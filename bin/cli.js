@@ -4,7 +4,8 @@ var commander=topolr.commander();
 [
     require("./cmd/version"),
     require("./cmd/init"),
-    require("./cmd/build")
+    require("./cmd/build"),
+    require("./cmd/watch")
 ].forEach(function (a) {
     var command=a.command, desc=a.desc, paras=a.paras, fn=a.fn;
     commander.bind(command,desc,paras,fn);
