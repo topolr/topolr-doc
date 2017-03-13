@@ -1,10 +1,13 @@
 {
   "name": "topolr-doc",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "parsing doc site",
   "main": "main.js",
   "scripts": {
     "test": "node test.js"
+  },
+  "bin": {
+    "topolr-doc": "bin/cli.js"
   },
   "keywords": [
     "doc"
