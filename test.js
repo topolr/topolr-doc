@@ -1,5 +1,5 @@
 require("./main")({
-    basePath:"G:/git/topolr/source/",
+    basePath:"G:/git/topolr/_source/",
     output:"../",
     devSitePath:"http://localhost/topolr/",
     pubSitePath:"http://topolr.org"
